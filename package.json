@@ -1,0 +1,10 @@
+{
+  "name": "wesleytube",
+  "version": "1.0.0",
+  "description": "cloning youtube",
+  "main": "index.js",
+  "author": "wesley",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
