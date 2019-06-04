@@ -10,11 +10,19 @@ export const home = async (req, res) => {
   }
 };
 
-export const search = (req, res) => {
+export const search = async (req, res) => {
   //const searchKeyword = req.query.keyword;
   const {
     query: { keyword: searchKeyword }
   } = req;
+  let videos = [];
+  try {
+    videos = await Video.find({
+      title: { $regex: searchKeyword, $options: "i" }
+    });
+  } catch (error) {
+    console.log(error);
+  }
   res.render("search", { pageTitle: "Search", searchKeyword, videos });
 };
 
