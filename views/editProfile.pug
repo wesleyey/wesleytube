@@ -3,9 +3,11 @@ extends layouts/main
 block content
     .form-container
         form(action=routes.editProfile, method="post")
-            label(for="userImage") Picture
-            input(type="file", id="userImage" name ="userImage")
+            .fileUpload
+                label(for="userImage") Picture
+                input(type="file", id="userImage" name ="userImage")
             input(type="text" name="name" placeholder="Full name")
             input(type="email" name="email" placeholder="Email")
             input(type="submit" value="Update")
-        a.form-container__link(href=`/user${routes.changePassword}`) Change Password
+        a.form-container__link(href=`/user${routes.changePassword}`)
+            button Change Password
