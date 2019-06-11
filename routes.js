@@ -12,6 +12,7 @@ const USER = "/user";
 const USER_DETAIL = "/:id";
 const USER_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
+const ME = "/me";
 
 //videos
 const VIDEO = "/video";
@@ -39,6 +40,7 @@ const routes = {
     }
   },
   userProfile: USER_PROFILE,
+  me: ME,
   changePassword: CHANGE_PASSWORD,
   video: VIDEO,
   upload: VIDEO_UPLORD,
