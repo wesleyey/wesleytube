@@ -86,7 +86,44 @@ export const userDetail = async (req, res) => {
   }
 };
 
-export const userProfile = (req, res) =>
+export const getUserProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "User_Profile" });
-export const chagePassword = (req, res) =>
+
+export const postUserProfile = async (req, res) => {
+  const {
+    body: { name, email },
+    file
+  } = req;
+  console.log(req.user);
+  try {
+    await User.findByIdAndUpdate(req.user.id, {
+      name,
+      email,
+      avatarUrl: file ? file.path : req.user.avatarUrl
+    });
+    res.redirect(routes.me);
+  } catch (error) {
+    res.redirect(routes.userProfile);
+  }
+};
+
+export const getChagePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change_Password" });
+
+export const postChagePassword = async (req, res) => {
+  const {
+    body: { password, password1, password2 }
+  } = req;
+  try {
+    if (password1 !== password2) {
+      res.status(400);
+      res.redirect(`/user${routes.changePassword}`);
+      return;
+    }
+    await req.user.changePassword(password, password1);
+    res.redirect(routes.me);
+  } catch (error) {
+    res.status(400);
+    res.redirect(`/user${routes.changePassword}`);
+  }
+};
