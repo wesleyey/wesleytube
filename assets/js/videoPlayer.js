@@ -6,6 +6,7 @@ const fullScrBtn = document.getElementById("jsFullScreen");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("jsVolume");
+const timeLine = document.getElementById("jsTimeline");
 
 function handlePlayClick() {
   if (videoPlayer.paused) {
@@ -83,12 +84,14 @@ function getCurrentTime() {
 
 function setTotalTime() {
   const totalTimeString = formatDate(videoPlayer.duration);
+  timeLine.max = videoPlayer.duration;
   totalTime.innerHTML = totalTimeString;
   setInterval(getCurrentTime, 1000);
 }
 
 function handleEnded() {
   videoPlayer.currentTime = 0;
+  timeLine.value = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
 
@@ -107,6 +110,13 @@ function handleVolumeControl(e) {
   }
 }
 
+function handleTimelineControl(e) {
+  const {
+    target: { value }
+  } = e;
+  videoPlayer.currentTime = value;
+}
+
 function init() {
   videoPlayer.volume = 0.6;
   playBtn.addEventListener("click", handlePlayClick);
@@ -115,6 +125,7 @@ function init() {
   videoPlayer.addEventListener("loadedmetadata", setTotalTime);
   videoPlayer.addEventListener("ended", handleEnded);
   volumeRange.addEventListener("input", handleVolumeControl);
+  timeLine.addEventListener("input", handleTimelineControl);
 }
 
 if (videoContainer) {

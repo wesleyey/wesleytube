@@ -60,11 +60,18 @@
       justify-self: end;
     }
     .videoPlayer__column:nth-child(2) {
-      justify-self: center;
+      display: flex;
+      //justify-self: center;
     }
     i {
       font-size: 25px;
+      padding-right: 10px;
+      padding-left: 10px;
+      padding-top: 5px;
       cursor: pointer;
+    }
+    input {
+      padding: 0;
     }
   }
 }

@@ -13,6 +13,7 @@ mixin videoPlayer(video={})
             .videoPlayer__column
                 span#jsPlayButton
                     i.fas.fa-play
+                input.videoPlayer__timeline#jsTimeline(type="range", min="0", max="1", step="0.1" value="0")
             .videoPlayer__column
                 span#jsFullScreen
                     i.fas.fa-expand
