@@ -22,7 +22,7 @@ export const postJoin = async (req, res, next) => {
       await User.register(user, password);
       next();
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       res.redirect(routes.home);
     }
   }
@@ -80,7 +80,7 @@ export const userDetail = async (req, res) => {
   } = req;
   try {
     const user = await User.findById(id).populate("videos");
-    console.log(user);
+    //console.log(user);
     res.render("userDetail", { pageTitle: "User_Detail", user });
   } catch (error) {
     res.redirect(routes.home);
@@ -95,7 +95,7 @@ export const postUserProfile = async (req, res) => {
     body: { name, email },
     file
   } = req;
-  console.log(req.user);
+  //console.log(req.user);
   try {
     await User.findByIdAndUpdate(req.user.id, {
       name,
