@@ -72,7 +72,7 @@ const formatDate = seconds => {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  if (seconds < 10) {
+  if (totalSeconds < 10) {
     totalSeconds = `0${totalSeconds}`;
   }
   return `${hours}:${minutes}:${totalSeconds}`;
@@ -80,6 +80,7 @@ const formatDate = seconds => {
 
 function getCurrentTime() {
   currentTime.innerHTML = formatDate(videoPlayer.currentTime);
+  timeLine.value = videoPlayer.currentTime;
 }
 
 function setTotalTime() {
