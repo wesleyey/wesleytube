@@ -8,6 +8,13 @@ const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("jsVolume");
 const timeLine = document.getElementById("jsTimeline");
 
+const regiterView = () => {
+  const videoId = window.location.href.split("/video")[1];
+  fetch(`http://localhost:4000/api/${videoId}/view`, {
+    method: "POST"
+  });
+};
+
 function handlePlayClick() {
   if (videoPlayer.paused) {
     videoPlayer.play();
@@ -91,6 +98,7 @@ function setTotalTime() {
 }
 
 function handleEnded() {
+  regiterView();
   videoPlayer.currentTime = 0;
   timeLine.value = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
