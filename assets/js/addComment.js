@@ -12,7 +12,10 @@ const sendComment = async comment => {
       comment
     }
   });
-  console.log(response);
+  if (response.status === 200) {
+    //console.log(response);
+    window.location.reload();
+  }
 };
 
 const handleSubmit = e => {
