@@ -14,7 +14,7 @@ export const home = async (req, res) => {
 export const search = async (req, res) => {
   //const searchKeyword = req.query.keyword;
   const {
-    query: { keyword: searchKeyword }
+    query: { term: searchKeyword }
   } = req;
   let videos = [];
   try {
