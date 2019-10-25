@@ -140,10 +140,11 @@ function init() {
   playBtn.addEventListener("click", handlePlayClick);
   volumeBtn.addEventListener("click", handleVolumeClick);
   fullScrBtn.addEventListener("click", fullScreen);
-  videoPlayer.addEventListener("loadeddata", setTotalTime);
+  videoPlayer.addEventListener("loadedmetadata", setTotalTime);
   videoPlayer.addEventListener("ended", handleEnded);
   volumeRange.addEventListener("input", handleVolumeControl);
   timeLine.addEventListener("input", handleTimelineControl);
+  videoPlayer.load();
 }
 
 if (videoContainer) {
