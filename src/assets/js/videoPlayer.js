@@ -12,7 +12,7 @@ const timeLine = document.getElementById("jsTimeline");
 
 const regiterView = () => {
   const videoId = window.location.href.split("/video")[1];
-  fetch(`http://localhost:4000/api/${videoId}/view`, {
+  fetch(`/api/${videoId}/view`, {
     method: "POST"
   });
 };
@@ -94,7 +94,7 @@ function getCurrentTime() {
 
 async function setTotalTime() {
   let duration;
-  if (videoPlayer.duration !== Number) {
+  if (!isFinite(videoPlayer.duration)) {
     const blob = await fetch(videoPlayer.src).then(response => response.blob());
     duration = await getBlobDuration(blob);
   } else {
