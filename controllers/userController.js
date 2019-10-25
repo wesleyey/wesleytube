@@ -67,7 +67,7 @@ export const kakaoLoginCallback = async (_, __, profile, done) => {
   const {
     _json: { id, properties: { profile_image, nickname }, kakao_account: { email } }
   } = profile;
-  console.log(profile);
+  //console.log(profile);
   try {
     const user = await User.findOne({ email });
     if (user) {
@@ -130,7 +130,7 @@ export const postUserProfile = async (req, res) => {
     await User.findByIdAndUpdate(req.user.id, {
       name,
       email,
-      avatarUrl: file ? file.path : req.user.avatarUrl
+      avatarUrl: file ? file.location : req.user.avatarUrl
     });
     res.redirect(routes.me);
   } catch (error) {
