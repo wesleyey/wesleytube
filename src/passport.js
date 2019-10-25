@@ -12,7 +12,9 @@ passport.use(User.createStrategy());
 passport.use("kakao", new KakaoLogin({
   clientID: process.env.KAKAO_ID,
   clientSecret: process.env.KAKAO_SECRET,
-  callbackURL: `http://localhost:4000${routes.kakaocallback}`
+  callbackURL: process.env.PRODUCTION
+    ? `https://desolate-meadow-58147.herokuapp.com${routes.kakaocallback}`
+    : `http://localhost:4000${routes.kakaocallback}`
 },
   kakaoLoginCallback
 )
@@ -23,7 +25,9 @@ passport.use(
     {
       clientID: process.env.GIT_ID,
       clientSecret: process.env.GIT_SECRET,
-      callbackURL: `http://localhost:4000${routes.githubcallback}`
+      callbackURL: process.env.PRODUCTION
+        ? `https://desolate-meadow-58147.herokuapp.com${routes.githubcallback}`
+        : `http://localhost:4000${routes.githubcallback}`
     },
     githubLoginCallback
   )
