@@ -1,7 +1,7 @@
 //seperated from server, this is fully client side, can not use babel etc...
 
 const path = require("path");
-const ExtractCSS = require("extract-text-webpack-plugin");
+const ExtractCSS = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
 
 const MODE = process.env.WEBPACK_ENV;
@@ -23,7 +23,13 @@ const config = {
       },
       {
         test: /\.(scss)$/,
-        use: ExtractCSS.extract([
+        use: [
+          {
+            loader: ExtractCSS.loader,
+            options: {
+              reloadAll: true,
+            }
+          },
           {
             loader: "css-loader"
           },
@@ -38,7 +44,7 @@ const config = {
           {
             loader: "sass-loader"
           }
-        ])
+        ]
       }
     ]
   },

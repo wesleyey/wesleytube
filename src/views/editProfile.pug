@@ -1,0 +1,11 @@
+extends layouts/main
+
+block content
+    .form-container
+        form(action=`/user${routes.userProfile}`, method="post", enctype="multipart/form-data")
+            .fileUpload
+                label(for="userImage") Picture
+                input(type="file", id="userImage" name ="userImage", accept="image/*")
+            input(type="text" name="name" placeholder="Full name", value = loggedUser.name)
+            input(type="email" name="email" placeholder="Email", value = loggedUser.email)
+            input(type="submit" value="Update")

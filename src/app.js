@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import passport from "passport";
 import mongoose from "mongoose";
 import session from "express-session";
+import path from "path";
 import mongoStore from "connect-mongo";
 import cookieParser from "cookie-parser";
 import userRouter from "./routers/userRouter";
@@ -22,8 +23,8 @@ const CookieStore = mongoStore(session);
 
 app.use(helmet());
 app.set("view engine", "pug");
-app.use("/upload", express.static("upload"));
-app.use("/static", express.static("static"));
+app.set("views", path.join(__dirname, "views"));
+app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
