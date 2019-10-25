@@ -98,7 +98,7 @@ async function setTotalTime() {
     const blob = await fetch(videoPlayer.src).then(response => response.blob());
     duration = await getBlobDuration(blob);
   } else {
-    duration = videoPlayer.duration;
+    duration = await videoPlayer.duration;
   }
   const totalTimeString = formatDate(duration);
   timeLine.max = duration;
